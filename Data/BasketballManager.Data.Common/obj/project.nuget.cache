@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "aI7/kHkH7zJzg+3/NCWYAPO4/z75HYPPOdWkt3Nz5DXJe5vFeliPLAfzU0zObpQaN9w4/LlnnVz4f9uKoMYqow==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\user\\Desktop\\Basketball Manager\\Data\\BasketballManager.Data.Common\\BasketballManager.Data.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.205\\stylecop.analyzers.1.2.0-beta.205.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.205\\stylecop.analyzers.unstable.1.2.0.205.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

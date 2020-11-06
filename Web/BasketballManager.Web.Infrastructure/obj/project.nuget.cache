@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "rMpBDSlo+HhKeXTMGq5v5G4BJz+YAhzWq77U0FDTHsOZhWCU7S1wmE/GrMetVao8PrB3fKYdXhfWp7t/p3PI6Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\user\\Desktop\\Basketball Manager\\Web\\BasketballManager.Web.Infrastructure\\BasketballManager.Web.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.205\\stylecop.analyzers.1.2.0-beta.205.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.205\\stylecop.analyzers.unstable.1.2.0.205.nupkg.sha512"
+  ],
+  "logs": []
+}
