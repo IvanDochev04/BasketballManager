@@ -12,8 +12,8 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("BasketballManager.Data", "C:\\Users\\user\\Desktop\\Basketball Manager\\Data\\BasketballManager.Data", "BasketballManager.Data.csproj", "0")]
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("BasketballManager.Web", "C:\\Users\\user\\Desktop\\Basketball Manager\\Web\\BasketballManager.Web", "BasketballManager.Web.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("BasketballManager.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\user\\Desktop\\Basketball Manager\\Data\\BasketballManager.Data", "BasketballManager.Data.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("BasketballManager.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\user\\Desktop\\Basketball Manager\\Web\\BasketballManager.Web", "BasketballManager.Web.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("BasketballManager.Web.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

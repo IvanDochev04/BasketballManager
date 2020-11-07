@@ -8,8 +8,9 @@
 
     using BasketballManager.Data.Common.Models;
     using BasketballManager.Data.Models;
-
+    using BasketballManager.Data.Models.GameModels;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
@@ -25,6 +26,14 @@
         }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Manager> Managers { get; set; }
+
+        public DbSet<Player> Players { get; set; }
+
+        public DbSet<Attributes> Attributes { get; set; }
+
+        public DbSet<Team> Teams { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -72,6 +81,22 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            // My Models
+            builder
+                .Entity<Team>()
+                .Property(t => t.TeamColour)
+                .HasConversion(c => c.ToString(), c => (Colour)Enum.Parse(typeof(Colour), c));
+
+            builder.Entity<Manager>()
+                .HasOne(m => m.Team)
+                .WithOne(t => t.Manager)
+                .HasForeignKey<Team>(c => c.ManagerId);
+
+            builder.Entity<ApplicationUser>()
+                .HasOne(u => u.Manager)
+                .WithOne(t => t.User)
+                .HasForeignKey<Manager>(c => c.UserId);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

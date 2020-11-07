@@ -5,7 +5,7 @@ namespace BasketballManager.Data.Models
     using System.Collections.Generic;
 
     using BasketballManager.Data.Common.Models;
-
+    using BasketballManager.Data.Models.GameModels;
     using Microsoft.AspNetCore.Identity;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
@@ -17,6 +17,10 @@ namespace BasketballManager.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
+
+        public string ManagerId { get; set; }
+
+        public Manager Manager { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }
