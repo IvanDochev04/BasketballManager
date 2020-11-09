@@ -9,6 +9,7 @@
     using BasketballManager.Data.Common.Models;
     using BasketballManager.Data.Models;
     using BasketballManager.Data.Models.GameModels;
+    using BasketballManager.Data.Models.GameModels.Enumerations;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
@@ -97,6 +98,9 @@
                 .HasOne(u => u.Manager)
                 .WithOne(t => t.User)
                 .HasForeignKey<Manager>(c => c.UserId);
+
+            builder.Entity<Attributes>()
+            .HasKey(c => new { c.Level, c.Position });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

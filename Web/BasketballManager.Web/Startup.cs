@@ -8,6 +8,7 @@
     using BasketballManager.Data.Models;
     using BasketballManager.Data.Repositories;
     using BasketballManager.Data.Seeding;
+    using BasketballManager.Services;
     using BasketballManager.Services.Data;
     using BasketballManager.Services.Mapping;
     using BasketballManager.Services.Messaging;
@@ -64,6 +65,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IPlayerService, PlayerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

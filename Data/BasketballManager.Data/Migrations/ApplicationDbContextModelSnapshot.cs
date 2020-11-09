@@ -144,7 +144,10 @@ namespace BasketballManager.Data.Migrations
 
             modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Attributes", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Position")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Assisting")
@@ -162,7 +165,7 @@ namespace BasketballManager.Data.Migrations
                     b.Property<int>("Stealing")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("Level", "Position");
 
                     b.ToTable("Attributes");
                 });
@@ -215,10 +218,6 @@ namespace BasketballManager.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AttributesId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -227,8 +226,7 @@ namespace BasketballManager.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -238,9 +236,9 @@ namespace BasketballManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AttributesId");
-
                     b.HasIndex("TeamId");
+
+                    b.HasIndex("Level", "Position");
 
                     b.ToTable("Players");
                 });
@@ -421,15 +419,13 @@ namespace BasketballManager.Data.Migrations
 
             modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Player", b =>
                 {
-                    b.HasOne("BasketballManager.Data.Models.GameModels.Attributes", "Attributes")
-                        .WithMany("Players")
-                        .HasForeignKey("AttributesId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("BasketballManager.Data.Models.GameModels.Team", "Team")
                         .WithMany("Roster")
                         .HasForeignKey("TeamId");
+
+                    b.HasOne("BasketballManager.Data.Models.GameModels.Attributes", "Attributes")
+                        .WithMany("Players")
+                        .HasForeignKey("Level", "Position");
                 });
 
             modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Team", b =>

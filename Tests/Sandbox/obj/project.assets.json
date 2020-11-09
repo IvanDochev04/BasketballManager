@@ -1698,6 +1698,12 @@
       "BasketballManager.Services/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "BasketballManager.Common": "1.0.0",
+          "BasketballManager.Data": "1.0.0",
+          "BasketballManager.Data.Models": "1.0.0",
+          "BasketballManager.Services.Data": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/BasketballManager.Services.dll": {}
         },

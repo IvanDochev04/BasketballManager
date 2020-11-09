@@ -18,4 +18,11 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BasketballManager.Common\BasketballManager.Common.csproj" />
+    <ProjectReference Include="..\..\Data\BasketballManager.Data.Models\BasketballManager.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\BasketballManager.Data\BasketballManager.Data.csproj" />
+    <ProjectReference Include="..\BasketballManager.Services.Data\BasketballManager.Services.Data.csproj" />
+  </ItemGroup>
+
 </Project>
