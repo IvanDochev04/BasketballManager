@@ -407,16 +407,6 @@
           "bin/placeholder/BasketballManager.Common.dll": {}
         }
       },
-      "BasketballManager.Data/1.0.0": {
-        "type": "project",
-        "framework": "Unsupported,Version=v0.0",
-        "compile": {
-          "bin/placeholder/BasketballManager.Data.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BasketballManager.Data.dll": {}
-        }
-      },
       "BasketballManager.Data.Common/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -1334,11 +1324,6 @@
       "path": "../../BasketballManager.Common/BasketballManager.Common.csproj",
       "msbuildProject": "../../BasketballManager.Common/BasketballManager.Common.csproj"
     },
-    "BasketballManager.Data/1.0.0": {
-      "type": "project",
-      "path": "../../Data/BasketballManager.Data/BasketballManager.Data.csproj",
-      "msbuildProject": "../../Data/BasketballManager.Data/BasketballManager.Data.csproj"
-    },
     "BasketballManager.Data.Common/1.0.0": {
       "type": "project",
       "path": "../../Data/BasketballManager.Data.Common/BasketballManager.Data.Common.csproj",
@@ -1363,7 +1348,6 @@
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
       "BasketballManager.Common >= 1.0.0",
-      "BasketballManager.Data >= 1.0.0",
       "BasketballManager.Data.Models >= 1.0.0",
       "BasketballManager.Services.Data >= 1.0.0",
       "StyleCop.Analyzers >= 1.2.0-beta.205"
@@ -1400,9 +1384,6 @@
             },
             "C:\\Users\\user\\Desktop\\Basketball Manager\\Data\\BasketballManager.Data.Models\\BasketballManager.Data.Models.csproj": {
               "projectPath": "C:\\Users\\user\\Desktop\\Basketball Manager\\Data\\BasketballManager.Data.Models\\BasketballManager.Data.Models.csproj"
-            },
-            "C:\\Users\\user\\Desktop\\Basketball Manager\\Data\\BasketballManager.Data\\BasketballManager.Data.csproj": {
-              "projectPath": "C:\\Users\\user\\Desktop\\Basketball Manager\\Data\\BasketballManager.Data\\BasketballManager.Data.csproj"
             },
             "C:\\Users\\user\\Desktop\\Basketball Manager\\Services\\BasketballManager.Services.Data\\BasketballManager.Services.Data.csproj": {
               "projectPath": "C:\\Users\\user\\Desktop\\Basketball Manager\\Services\\BasketballManager.Services.Data\\BasketballManager.Services.Data.csproj"
@@ -1444,16 +1425,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1201",
-      "level": "Error",
-      "message": "Project BasketballManager.Data is not compatible with netstandard2.1 (.NETStandard,Version=v2.1). Project BasketballManager.Data supports: netcoreapp3.1 (.NETCoreApp,Version=v3.1)",
-      "libraryId": "BasketballManager.Data",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.1"
-      ]
-    }
-  ]
+  }
 }

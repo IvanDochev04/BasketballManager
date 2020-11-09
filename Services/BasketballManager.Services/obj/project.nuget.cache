@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "ESjy69TSrfrHjDz9BrZwSxnzoaMSFCD78Po5oTjEY/gAM/iZpXoiubzy60aSenZS0PT8+LSJQ6/r7gPdg+LI6A==",
-  "success": false,
+  "dgSpecHash": "3PgOJ8QEw5BcmjI0FtzOqaow7OsCCxzO3NYimasyE67rPghYruew9gek4Xft1QNuoFRvV6uFmn2GnfBK35QQYg==",
+  "success": true,
   "projectFilePath": "C:\\Users\\user\\Desktop\\Basketball Manager\\Services\\BasketballManager.Services\\BasketballManager.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
@@ -40,15 +40,5 @@
     "C:\\Users\\user\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1201",
-      "level": "Error",
-      "message": "Project BasketballManager.Data is not compatible with netstandard2.1 (.NETStandard,Version=v2.1). Project BasketballManager.Data supports: netcoreapp3.1 (.NETCoreApp,Version=v3.1)",
-      "libraryId": "BasketballManager.Data",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.1"
-      ]
-    }
-  ]
+  "logs": []
 }
