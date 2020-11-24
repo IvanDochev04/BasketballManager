@@ -84,10 +84,7 @@
             }
 
             // My Models
-            builder
-                .Entity<Team>()
-                .Property(t => t.TeamColour)
-                .HasConversion(c => c.ToString(), c => (Colour)Enum.Parse(typeof(Colour), c));
+
 
             builder.Entity<Manager>()
                 .HasOne(m => m.Team)
@@ -99,8 +96,7 @@
                 .WithOne(t => t.User)
                 .HasForeignKey<Manager>(c => c.UserId);
 
-            builder.Entity<Attributes>()
-            .HasKey(c => new { c.Level, c.Position });
+           
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

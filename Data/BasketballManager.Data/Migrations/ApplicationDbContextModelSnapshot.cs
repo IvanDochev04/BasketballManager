@@ -144,17 +144,29 @@ namespace BasketballManager.Data.Migrations
 
             modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Attributes", b =>
                 {
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Assisting")
                         .HasColumnType("int");
 
                     b.Property<int>("Blocking")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rebounding")
                         .HasColumnType("int");
@@ -165,7 +177,7 @@ namespace BasketballManager.Data.Migrations
                     b.Property<int>("Stealing")
                         .HasColumnType("int");
 
-                    b.HasKey("Level", "Position");
+                    b.HasKey("Id");
 
                     b.ToTable("Attributes");
                 });
@@ -178,6 +190,12 @@ namespace BasketballManager.Data.Migrations
                     b.Property<int>("Cash")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("ExperiencePoints")
                         .HasColumnType("int");
 
@@ -186,6 +204,9 @@ namespace BasketballManager.Data.Migrations
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(15)")
@@ -193,6 +214,9 @@ namespace BasketballManager.Data.Migrations
 
                     b.Property<int>("LeaguePoints")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("TeamId")
                         .IsRequired()
@@ -207,6 +231,8 @@ namespace BasketballManager.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IsDeleted");
+
                     b.HasIndex("UserId")
                         .IsUnique();
 
@@ -218,15 +244,30 @@ namespace BasketballManager.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("AttributesId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Level")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Position")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -236,9 +277,11 @@ namespace BasketballManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("AttributesId");
 
-                    b.HasIndex("Level", "Position");
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Players");
                 });
@@ -248,23 +291,36 @@ namespace BasketballManager.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("IconUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ManagerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
-                    b.Property<string>("TeamColour")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TeamColour")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("ManagerId")
                         .IsUnique();
@@ -419,13 +475,15 @@ namespace BasketballManager.Data.Migrations
 
             modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Player", b =>
                 {
+                    b.HasOne("BasketballManager.Data.Models.GameModels.Attributes", "Attributes")
+                        .WithMany("Players")
+                        .HasForeignKey("AttributesId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("BasketballManager.Data.Models.GameModels.Team", "Team")
                         .WithMany("Roster")
                         .HasForeignKey("TeamId");
-
-                    b.HasOne("BasketballManager.Data.Models.GameModels.Attributes", "Attributes")
-                        .WithMany("Players")
-                        .HasForeignKey("Level", "Position");
                 });
 
             modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Team", b =>
