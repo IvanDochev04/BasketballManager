@@ -54,7 +54,21 @@
 
             var settingsService = serviceProvider.GetService<ISettingsService>();
             Console.WriteLine($"Count of settings: {settingsService.GetCount()}");
-
+            Console.WriteLine("Level: ");
+            var level = int.Parse(Console.ReadLine());
+            Console.WriteLine("Position: ");
+            var position = Console.ReadLine();
+            var attributeService = serviceProvider.GetService<IAttributesService>();
+            var attributes = await attributeService.AddAttributesAsync(position, level);
+            Console.WriteLine(attributes.Id);
+            Console.WriteLine(attributes.Level);
+            Console.WriteLine(attributes.Position);
+            Console.WriteLine(attributes.Shooting);
+            Console.WriteLine(attributes.Rebounding);
+            Console.WriteLine(attributes.Assisting);
+            Console.WriteLine(attributes.Stealing);
+            Console.WriteLine(attributes.Blocking);
+            Console.WriteLine();
             Console.WriteLine(sw.Elapsed);
             return await Task.FromResult(0);
         }
@@ -78,6 +92,7 @@
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
+            services.AddScoped<IAttributesService, AttributesService>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();

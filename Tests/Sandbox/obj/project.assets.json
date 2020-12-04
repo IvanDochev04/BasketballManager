@@ -1657,6 +1657,7 @@
           "BasketballManager.Common": "1.0.0",
           "BasketballManager.Data.Common": "1.0.0",
           "BasketballManager.Data.Models": "1.0.0",
+          "BasketballManager.Services.Data": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.9",
           "Microsoft.Extensions.Configuration.UserSecrets": "3.1.9"

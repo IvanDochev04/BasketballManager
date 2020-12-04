@@ -40,6 +40,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BasketballManager.Common\BasketballManager.Common.csproj" />
+    <ProjectReference Include="..\..\Services\BasketballManager.Services.Data\BasketballManager.Services.Data.csproj" />
     <ProjectReference Include="..\BasketballManager.Data.Common\BasketballManager.Data.Common.csproj" />
     <ProjectReference Include="..\BasketballManager.Data.Models\BasketballManager.Data.Models.csproj" />
   </ItemGroup>
