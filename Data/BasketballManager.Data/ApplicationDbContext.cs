@@ -26,6 +26,10 @@
         {
         }
 
+        public DbSet<Match> Matches { get; set; }
+
+        public DbSet<League> Leagues { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
 
         public DbSet<Manager> Managers { get; set; }
@@ -96,7 +100,11 @@
                 .WithOne(t => t.User)
                 .HasForeignKey<Manager>(c => c.UserId);
 
-           
+            builder.Entity<League>().HasOne<Manager>(l => l.Creator).WithMany(c => c.MyLeagues);
+            builder.Entity<League>().HasMany<Manager>(m => m.Participants);
+
+            builder.Entity<Manager>().HasMany<League>(l => l.Leagues);
+
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

@@ -182,6 +182,43 @@ namespace BasketballManager.Data.Migrations
                     b.ToTable("Attributes");
                 });
 
+            modelBuilder.Entity("BasketballManager.Data.Models.GameModels.League", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ManagerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ManagerId");
+
+                    b.ToTable("Leagues");
+                });
+
             modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Manager", b =>
                 {
                     b.Property<string>("Id")
@@ -212,6 +249,9 @@ namespace BasketballManager.Data.Migrations
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
 
+                    b.Property<string>("LeagueId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("LeaguePoints")
                         .HasColumnType("int");
 
@@ -233,10 +273,62 @@ namespace BasketballManager.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
+                    b.HasIndex("LeagueId");
+
                     b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("Managers");
+                });
+
+            modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Match", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LeagueId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ManagerAwayId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ManagerHomeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Team1Score")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Team2Score")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("LeagueId");
+
+                    b.HasIndex("ManagerAwayId");
+
+                    b.HasIndex("ManagerHomeId");
+
+                    b.ToTable("Matches");
                 });
 
             modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Player", b =>
@@ -245,6 +337,9 @@ namespace BasketballManager.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AttributesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CashPrice")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -269,7 +364,7 @@ namespace BasketballManager.Data.Migrations
                     b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
+                    b.Property<int>("TPPrice")
                         .HasColumnType("int");
 
                     b.Property<string>("TeamId")
@@ -464,12 +559,46 @@ namespace BasketballManager.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("BasketballManager.Data.Models.GameModels.League", b =>
+                {
+                    b.HasOne("BasketballManager.Data.Models.GameModels.Manager", "Creator")
+                        .WithMany("MyLeagues")
+                        .HasForeignKey("CreatorId");
+
+                    b.HasOne("BasketballManager.Data.Models.GameModels.Manager", null)
+                        .WithMany("Leagues")
+                        .HasForeignKey("ManagerId");
+                });
+
             modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Manager", b =>
                 {
+                    b.HasOne("BasketballManager.Data.Models.GameModels.League", null)
+                        .WithMany("Participants")
+                        .HasForeignKey("LeagueId");
+
                     b.HasOne("BasketballManager.Data.Models.ApplicationUser", "User")
                         .WithOne("Manager")
                         .HasForeignKey("BasketballManager.Data.Models.GameModels.Manager", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BasketballManager.Data.Models.GameModels.Match", b =>
+                {
+                    b.HasOne("BasketballManager.Data.Models.GameModels.League", "League")
+                        .WithMany("Matches")
+                        .HasForeignKey("LeagueId");
+
+                    b.HasOne("BasketballManager.Data.Models.GameModels.Manager", "ManagerAway")
+                        .WithMany("AwayMatches")
+                        .HasForeignKey("ManagerAwayId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BasketballManager.Data.Models.GameModels.Manager", "ManagerHome")
+                        .WithMany("HomeMatches")
+                        .HasForeignKey("ManagerHomeId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
